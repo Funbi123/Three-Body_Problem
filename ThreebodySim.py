@@ -18,51 +18,6 @@ vx1, vy1 =  0.0,  0.5
 vx2, vy2 = -0.433, -0.25
 vx3, vy3 =  0.433, -0.25
 
-#Special intial conditions
-# Figure 8 orbit: 
-# x1, y1 = -0.97000436,0.24308753
-# x2, y2 = 0.97000436, -0.24308753
-# x3, y3 = 0., 0.
-
-# vx1, vy1 = 0.466203685, 0.43236573
-# vx2, vy2 = 0.466203685,  0.43236573
-# vx3, vy3 = -0.93240737, -0.86473146
-
-#Symmetric triangle:
-# x1, y1 = 1.0,  0.0
-# x2, y2 = -0.5,  0.866025
-# x3, y3 = -0.5, -0.866025
-
-# vx1, vy1 = 0., 0.
-# vx2, vy2 = 0., 0.
-# vx3, vy3 = 0., 0.
-
-#Approximately circular arrangement
-# x1, y1 = 1.0,  0.0
-# x2, y2 = -0.5,  0.866025
-# x3, y3 = -0.5, -0.866025
-
-# vx1, vy1 =  0.0,  0.5
-# vx2, vy2 = -0.433, -0.25
-# vx3, vy3 =  0.433, -0.25
-
-#Asymmetric condition:
-# x1, y1 = -3.0, 0.0
-# x2, y2 =  0.0, 0.2
-# x3, y3 = 1.0, 3.0
-
-# vx1, vy1 = 0.0,  0.3
-# vx2, vy2 = 0.2, -0.1
-# vx3, vy3 = -0.2, 0.0
-
-#Linear bodies
-# x1, y1 = -2.0, 0.0
-# x2, y2 =  0.0, 0.0
-# x3, y3 = 2.0, 0.0
-
-# vx1, vy1 = 0, 0
-# vx2, vy2 = 0, 0
-# vx3, vy3 = 0, 0
 
 #Define the state of the system (Three positions and three celocities each with x and y componenet)
 state = np.array([
@@ -258,5 +213,52 @@ animation = FuncAnimation(
     interval=10,
     blit = True
 )
+
+#Special intial conditions
+# Figure 8 orbit: 
+# x1, y1 = -0.97000436,0.24308753
+# x2, y2 = 0.97000436, -0.24308753
+# x3, y3 = 0., 0.
+
+# vx1, vy1 = 0.466203685, 0.43236573
+# vx2, vy2 = 0.466203685,  0.43236573
+# vx3, vy3 = -0.93240737, -0.86473146
+
+#Symmetric triangle:
+# x1, y1 = 1.0,  0.0
+# x2, y2 = -0.5,  0.866025
+# x3, y3 = -0.5, -0.866025
+
+# vx1, vy1 = 0., 0.
+# vx2, vy2 = 0., 0.
+# vx3, vy3 = 0., 0.
+
+#Approximately circular arrangement
+# x1, y1 = 1.0,  0.0
+# x2, y2 = -0.5,  0.866025
+# x3, y3 = -0.5, -0.866025
+
+# vx1, vy1 =  0.0,  0.5
+# vx2, vy2 = -0.433, -0.25
+# vx3, vy3 =  0.433, -0.25
+
+#Asymmetric condition:
+# x1, y1 = -3.0, 0.0
+# x2, y2 =  0.0, 0.2
+# x3, y3 = 1.0, 3.0
+
+# vx1, vy1 = 0.0,  0.3
+# vx2, vy2 = 0.2, -0.1
+# vx3, vy3 = -0.2, 0.0
+
+#Linear bodies
+# x1, y1 = -2.0, 0.0
+# x2, y2 =  0.0, 0.0
+# x3, y3 = 2.0, 0.0
+
+# vx1, vy1 = 0, 0
+# vx2, vy2 = 0, 0
+# vx3, vy3 = 0, 0
+
 
 plt.show()
