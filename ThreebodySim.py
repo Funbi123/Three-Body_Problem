@@ -18,52 +18,6 @@ vx1, vy1 =  0.0,  0.5
 vx2, vy2 = -0.433, -0.25
 vx3, vy3 =  0.433, -0.25
 
-#Special intial conditions
-# Figure 8 orbit: 
-# x1, y1 = -0.97000436,0.24308753
-# x2, y2 = 0.97000436, -0.24308753
-# x3, y3 = 0., 0.
-
-# vx1, vy1 = 0.466203685, 0.43236573
-# vx2, vy2 = 0.466203685,  0.43236573
-# vx3, vy3 = -0.93240737, -0.86473146
-
-#Symmetric triangle:
-# x1, y1 = 1.0,  0.0
-# x2, y2 = -0.5,  0.866025
-# x3, y3 = -0.5, -0.866025
-
-# vx1, vy1 = 0., 0.
-# vx2, vy2 = 0., 0.
-# vx3, vy3 = 0., 0.
-
-#Approximately circular arrangement
-# x1, y1 = 1.0,  0.0
-# x2, y2 = -0.5,  0.866025
-# x3, y3 = -0.5, -0.866025
-
-# vx1, vy1 =  0.0,  0.5
-# vx2, vy2 = -0.433, -0.25
-# vx3, vy3 =  0.433, -0.25
-
-#Asymmetric condition:
-# x1, y1 = -3.0, 0.0
-# x2, y2 =  0.0, 0.2
-# x3, y3 = 1.0, 3.0
-
-# vx1, vy1 = 0.0,  0.3
-# vx2, vy2 = 0.2, -0.1
-# vx3, vy3 = -0.2, 0.0
-
-#Linear bodies
-# x1, y1 = -2.0, 0.0
-# x2, y2 =  0.0, 0.0
-# x3, y3 = 2.0, 0.0
-
-# vx1, vy1 = 0, 0
-# vx2, vy2 = 0, 0
-# vx3, vy3 = 0, 0
-
 #Define the state of the system (Three positions and three celocities each with x and y componenet)
 state = np.array([
     [x1, y1],
@@ -260,3 +214,98 @@ animation = FuncAnimation(
 )
 
 plt.show()
+
+#Energy Drift plot
+
+#Extract the velocities
+
+vx1 = np.array([s[3][0] for s in result])
+vx2 = np.array([s[4][0] for s in result])
+vx3 = np.array([s[5][0] for s in result])
+
+vy1 = np.array([p[3][1] for p in result])
+vy2 = np.array([p[4][1] for p in result])
+vy3 = np.array([p[5][1] for p in result])
+
+#Compute kinetic energies
+
+ke1 = 0.5 * m1 * (vx1**2 + vy1**2)
+ke2 =  0.5 * m2 * (vx2**2 + vy2**2)
+ke3 = 0.5 * m3 * (vx3**2 + vy3**2)
+
+total_ke = ke1 + ke2 + ke3
+
+#Compute potential energies
+
+r12 = np.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+r13 = np.sqrt((x1 - x3)**2 + (y1 - y3)**2)
+r23 = np.sqrt((x2 - x3)**2 + (y2 - y3)**2)
+
+pe1 = -G * m1 * m2 / r12
+pe2 = -G * m3 * m2 / r23
+pe3 = -G * m1 * m3 / r13
+
+total_pe = pe1 + pe2 + pe3
+
+total_energy = total_ke + total_pe
+
+energy_drift = total_energy - total_energy[0] / abs(total_energy[0])
+
+plt.figure(figsize=(8, 5))
+
+plt.plot(np.arange(len(result)) * 0.01, energy_drift)
+
+plt.xlabel("Time")
+plt.ylabel("Relative energy drift")
+plt.title("Energy drift in RK4 of the three-body system")
+plt.grid(True, alpha=0.3)
+
+plt.show()
+
+
+#Special intial conditions
+# Figure 8 orbit: 
+# x1, y1 = -0.97000436,0.24308753
+# x2, y2 = 0.97000436, -0.24308753
+# x3, y3 = 0., 0.
+
+# vx1, vy1 = 0.466203685, 0.43236573
+# vx2, vy2 = 0.466203685,  0.43236573
+# vx3, vy3 = -0.93240737, -0.86473146
+
+#Symmetric triangle:
+# x1, y1 = 1.0,  0.0
+# x2, y2 = -0.5,  0.866025
+# x3, y3 = -0.5, -0.866025
+
+# vx1, vy1 = 0., 0.
+# vx2, vy2 = 0., 0.
+# vx3, vy3 = 0., 0.
+
+#Approximately circular arrangement
+# x1, y1 = 1.0,  0.0
+# x2, y2 = -0.5,  0.866025
+# x3, y3 = -0.5, -0.866025
+
+# vx1, vy1 =  0.0,  0.5
+# vx2, vy2 = -0.433, -0.25
+# vx3, vy3 =  0.433, -0.25
+
+#Asymmetric condition:
+# x1, y1 = -3.0, 0.0
+# x2, y2 =  0.0, 0.2
+# x3, y3 = 1.0, 3.0
+
+# vx1, vy1 = 0.0,  0.3
+# vx2, vy2 = 0.2, -0.1
+# vx3, vy3 = -0.2, 0.0
+
+#Linear bodies
+# x1, y1 = -2.0, 0.0
+# x2, y2 =  0.0, 0.0
+# x3, y3 = 2.0, 0.0
+
+# vx1, vy1 = 0, 0
+# vx2, vy2 = 0, 0
+# vx3, vy3 = 0, 0
+
