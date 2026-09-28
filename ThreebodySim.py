@@ -9,7 +9,7 @@ m3 = 1.
 G = 1
 
 #Define the initial conditions
-#Feel free to play around with the initial conditions
+#Feel free to play around with the initial conditions (Jump to the end of the program to try out special initial conditions)
 x1, y1 = 1.0,  0.0
 x2, y2 = -0.5,  0.866025
 x3, y3 = -0.5, -0.866025
@@ -213,6 +213,14 @@ animation = FuncAnimation(
     blit = True
 )
 
+#Save the animation (You can comment this out)
+
+animation.save(
+    "three_body_problem.gif",
+    writer="pillow",
+    fps=30
+)
+
 plt.show()
 
 #Energy Drift plot
@@ -246,19 +254,21 @@ pe2 = -G * m3 * m2 / r23
 pe3 = -G * m1 * m3 / r13
 
 total_pe = pe1 + pe2 + pe3
+print("Minimum separation:", min(r12.min(), r13.min(), r23.min()))
 
 total_energy = total_ke + total_pe
 
-energy_drift = total_energy - total_energy[0] / abs(total_energy[0])
+E0 = total_energy[0]
+energy_drift = np.abs(total_energy - E0) / abs(E0)
 
-plt.figure(figsize=(8, 5))
+h = 0.01
+t = np.arange(len(result)) * h
 
-plt.plot(np.arange(len(result)) * 0.01, energy_drift)
-
+plt.semilogy(t, energy_drift + 1e-16)
 plt.xlabel("Time")
 plt.ylabel("Relative energy drift")
 plt.title("Energy drift in RK4 of the three-body system")
-plt.grid(True, alpha=0.3)
+
 
 plt.show()
 
@@ -272,6 +282,15 @@ plt.show()
 # vx1, vy1 = 0.466203685, 0.43236573
 # vx2, vy2 = 0.466203685,  0.43236573
 # vx3, vy3 = -0.93240737, -0.86473146
+
+#Circular Orbit:
+# x1, y1 = 1.0,  0.0
+# x2, y2 = -0.5,  0.866025
+# x3, y3 = -0.5, -0.866025
+
+# vx1, vy1 =  0.0,    0.7598
+# vx2, vy2 = -0.6580, -0.3799
+# vx3, vy3 =  0.6580, -0.3799
 
 #Symmetric triangle:
 # x1, y1 = 1.0,  0.0
