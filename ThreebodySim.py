@@ -273,7 +273,7 @@ plt.show()
 # vx2, vy2 = 0.466203685,  0.43236573
 # vx3, vy3 = -0.93240737, -0.86473146
 
-#Symmetric triangle:
+#Symmetric triangle:dd
 # x1, y1 = 1.0,  0.0
 # x2, y2 = -0.5,  0.866025
 # x3, y3 = -0.5, -0.866025
